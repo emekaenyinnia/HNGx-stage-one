@@ -15,6 +15,7 @@ header("Access-Control-Allow-Origin:*");
 
 
 // response message 
+
 function response($slack_name, $track, $response_code) 
 {
 	$response;
@@ -24,7 +25,7 @@ function response($slack_name, $track, $response_code)
 	if ($response_code === 200) {
 		$response['slack_name'] = $slack_name;
 		$response['current_day'] = $dayOfWeek;
-		$response['utc_time'] =  date("Y-m-d H:i:s", time());
+		$response['utc_time'] = gmdate("Y-m-d\TH:i:s\Z");
 		$response['track'] =  $track;
 		$response['github_file_url'] =  "https://github.com/emekaenyinnia/HNGx-stage-one/blob/main/api/index.php";
 		$response['github_repo_url'] =  "https://github.com/emekaenyinnia/HNGx-stage-one";
@@ -36,7 +37,7 @@ function response($slack_name, $track, $response_code)
 	}
 
 	$json_response = json_encode($response);
-	echo $json_response;
+	echo 	$json_response;
 	return $json_response;
 }
 
