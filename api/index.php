@@ -7,15 +7,15 @@ header("Access-Control-Allow-Origin:*");
 // validating the incoming request 
 
 	if (isset($_GET['slack_name']) && $_GET['slack_name'] !== "" && isset($_GET['track']) && $_GET['track'] !== "") {
-		response($_GET['slack_name'], $_GET['track'], 200,"user information retrieved successfully");	
+		response($_GET['slack_name'], $_GET['track'], 200);	
 	}else{
-		response(NULL, NULL, 400,"Invalid Request");
+		response(NULL, NULL, 400);
 	}
 
 
 
 // response message 
-function response($slack_name, $track, $response_code, $response_message) 
+function response($slack_name, $track, $response_code) 
 {
 	$response;
 	$date = date('y-m-d');
@@ -29,10 +29,10 @@ function response($slack_name, $track, $response_code, $response_message)
 		$response['github_file_url'] =  "https://github.com/emekaenyinnia/HNGx-stage-one/blob/main/api/index.php";
 		$response['github_repo_url'] =  "https://github.com/emekaenyinnia/HNGx-stage-one";
 		$response['status_code'] =  $response_code;
-		$response['message'] =  $response_message;
+	
 	} else{
 		$response['status_code'] =  $response_code;
-		$response['message'] =  $response_message;
+		
 	}
 
 	$json_response = json_encode($response);
